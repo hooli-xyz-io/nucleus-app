@@ -1,0 +1,58 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "bf0d18b89310b02f22437dc246c9b801",
+    "packages": [
+        {
+            "name": "hooli-xyz-io/nucleus-framework",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "../nucleus-framework",
+                "reference": "8eefcbb1515eae244760a1285a22ec84737b770b"
+            },
+            "require": {
+                "php": ">=7.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Core\\": "src/"
+                },
+                "files": [
+                    "src/support/Helpers.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Nucleus Framework - Core Kernel Engine",
+            "keywords": [
+                "core",
+                "engine",
+                "flux",
+                "framework",
+                "nucleus"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "hooli-xyz-io/nucleus-framework": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.4.0"
+    },
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
+}

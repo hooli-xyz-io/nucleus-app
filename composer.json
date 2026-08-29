@@ -24,7 +24,7 @@
     ],
     "scripts": {
         "post-autoload-dump": [
-            "@php -r \"echo 'Nucleus Framework autoload refreshed\\n';\" "
+            "@php -r \"echo 'Nucleus Framework autoload refreshed\n';\" "
         ]
     }
 }

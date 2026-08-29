@@ -22,6 +22,11 @@ if (file_exists(__DIR__ . '/../core/support/Helpers.php')) {
 // Fallback loader for case-mismatched project directories on case-sensitive filesystems.
 require_once __DIR__ . '/case_insensitive_autoload.php';
 
+// Register global Exception & Error Handler
+if (class_exists('Core\Exceptions\Handler')) {
+    \Core\Exceptions\Handler::register();
+}
+
 if (!function_exists('base_path')) {
     function base_path(string $path = '') {
         $base = defined('NUCLEUS_BASE_PATH') ? NUCLEUS_BASE_PATH : dirname(__DIR__);

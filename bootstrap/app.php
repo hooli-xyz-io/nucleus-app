@@ -1,16 +1,20 @@
 <?php
 
+if (!defined('NUCLEUS_BASE_PATH')) {
+    define('NUCLEUS_BASE_PATH', dirname(__DIR__));
+}
+
 // Start session for web auth
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Load composer autoload first
+// 1. Load composer autoloader & helper functions first
 if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
     require_once __DIR__ . '/../vendor/autoload.php';
 }
 
-// Fallback helper loader for local development
+// Fallback helper loader for local monorepo development
 if (file_exists(__DIR__ . '/../core/support/Helpers.php')) {
     require_once __DIR__ . '/../core/support/Helpers.php';
 }
@@ -18,10 +22,18 @@ if (file_exists(__DIR__ . '/../core/support/Helpers.php')) {
 // Fallback loader for case-mismatched project directories on case-sensitive filesystems.
 require_once __DIR__ . '/case_insensitive_autoload.php';
 
+if (!function_exists('base_path')) {
+    function base_path(string $path = '') {
+        $base = defined('NUCLEUS_BASE_PATH') ? NUCLEUS_BASE_PATH : dirname(__DIR__);
+        $normalizedBase = rtrim(str_replace('\\', '/', $base), '/');
+        return $normalizedBase . ($path === '' ? '' : '/' . ltrim(str_replace('\\', '/', $path), '/'));
+    }
+}
+
 /**
- * 1. LOAD ENV FIRST (BEFORE ANYTHING ELSE)
+ * 2. LOAD ENV
  */
-$envPath = __DIR__ . '/../.env';
+$envPath = base_path('.env');
 
 // Allow key:generate CLI command to run even without .env or APP_KEY
 $isKeyGenerate = (isset($argv[1]) && $argv[1] === 'key:generate');

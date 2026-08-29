@@ -1,9 +1,21 @@
 #!/usr/bin/env php
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+define('NUCLEUS_START', microtime(true));
 
-require __DIR__ . '/bootstrap/app.php';
+$autoloadPath = __DIR__ . '/vendor/autoload.php';
+
+if (!file_exists($autoloadPath)) {
+    echo "\n";
+    echo "  \033[45;\033[1;97m ⚡ NUCLEUS FRAMEWORK \033[0m\n\n";
+    echo "  \033[41;\033[1;97m MISSING DEPENDENCIES \033[0m \033[1;31mFramework core is not installed.\033[0m\n\n";
+    echo "  \033[33m👉 Please run the following command to install required dependencies:\033[0m\n\n";
+    echo "      \033[1;36mcomposer install\033[0m\n\n";
+    exit(1);
+}
+
+require_once $autoloadPath;
+require_once __DIR__ . '/bootstrap/app.php';
 
 use Core\Cli\Kernel;
 
